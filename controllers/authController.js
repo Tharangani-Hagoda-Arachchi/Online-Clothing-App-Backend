@@ -2,6 +2,9 @@ const User = require('../models/user')
 const  cookies = require("cookies")
 const cookie = require("cookie-parser")
 const {hashPassword,createToken,maxAge,verifyPassword} = require('../utils/authUtils');
+const jwt = require('jsonwebtoken')
+require('dotenv').config();
+const fs = require("fs");
 
 
 
@@ -34,11 +37,11 @@ const signUp = async (req, res) => {
          // provide Token
         const token = createToken(user._id);
 
-        // send cookies
-        res.cookie('SignIntoken', token, {
-            httpOnly: true,
-            maxAge: maxAge * 1000, 
-        });
+        // // send cookies
+        // res.cookie('SignIntoken', token, {
+        //     httpOnly: true,
+        //     maxAge: maxAge * 1000, 
+        // });
  
 
         res.status(201).json({
@@ -105,6 +108,7 @@ const signIn = async (req, res) => {
     }
    
 };
+
 
 
 module.exports = {signUp,signIn};

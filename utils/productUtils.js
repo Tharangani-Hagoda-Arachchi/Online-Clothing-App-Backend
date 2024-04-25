@@ -19,9 +19,6 @@ const validationRules = [
     check("description", "please provide description")
     .notEmpty(),
 
-    check("images", "please provide image URL")
-    .notEmpty(),
-
     check("gender", "please provide gender type(men,women,kid)")
     .notEmpty(),
 

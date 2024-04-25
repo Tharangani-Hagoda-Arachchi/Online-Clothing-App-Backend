@@ -5,9 +5,12 @@ require('dotenv').config();
 const fs = require("fs");
 
 
+
 // Read the private key
-const privateKeyPath = process.env.PRIVATE_KEY_PATH;
-const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+ const privateKeyPath = process.env.PRIVATE_KEY_PATH;
+ const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+
+const screatKey = process.env.screatKey;
 
 
 //validate email and password
@@ -66,11 +69,15 @@ const verifyPassword = async (password, hash) => {
 
 //create webtokens
 const maxAge = 3 * 24 * 60 * 60
-const createToken = (id,type) => {
-    return jwt.sign({id, type}, privateKey,{
+const createToken = (id) => {
+    return jwt.sign({id}, privateKey,{
         algorithm: 'RS256',
         expiresIn: maxAge
     });
+
+    // return jwt.sign({id}, screatKey,{
+    //         expiresIn: maxAge
+    //      });
       
   };
 

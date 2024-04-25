@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema({
     },
 
     price: {
-        type: mongoose.Decimal128,
+        type:Number,
         required: [true, "Price is required"],
     },
 
@@ -21,11 +21,12 @@ const productSchema = new mongoose.Schema({
         
     },
 
-    images: {
-        type: String,
-        required: [true, "image URL is required"],
-        
-    },
+    images: [{
+        name: String,
+        contentType: String,
+        data: Buffer
+       
+    }],
 
     gender: {
         type: String,
@@ -75,7 +76,8 @@ const productSchema = new mongoose.Schema({
     },   
     
 }, {
-    timestamps: true // Automatically manage createdAt and updatedAt fields
+    timestamps: false, // Automatically manage createdAt and updatedAt fields
+    versionKey:false
 });
 
 const Product = mongoose.model('Product', productSchema);
